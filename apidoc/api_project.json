@@ -1,0 +1,1 @@
+{  "name": "仿饿了么api",  "version": "1.0.0",  "description": "仿饿了么Api文档说明",  "apidoc": "0.3.0",  "sampleUrl": false,  "defaultVersion": "0.0.0",  "generator": {    "name": "apidoc",    "time": "2018-05-19T02:41:14.028Z",    "url": "http://apidocjs.com",    "version": "0.17.6"  }}

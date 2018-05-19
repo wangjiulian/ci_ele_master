@@ -1,0 +1,7 @@
+.left_thumb_imgharry {width:auto;height: auto; float:left;}
+.left_thumb_imgharry {display:block; height:79px; position:relative; outline:none;}
+.left_thumb_imgharry img{width:85px; height:75px; position:absolute; left:0; top:0; padding:1px; background:#eeeeee; border:0px solid #cccccc;}
+.left_thumb_imgharry img.on{background:#beceeb; border:1px solid #828da1;}
+.left_thumb_imgharry img.hover{padding:1px; background:url(/theme/adminlte/dist/img/thumb_shade.png) no-repeat 0px 0px; border:none;}
+.align-mid-h {text-align:center;}
+.fix-img-80width {width: 85px;}
