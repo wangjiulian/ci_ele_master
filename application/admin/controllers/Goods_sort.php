@@ -2,7 +2,7 @@
 	exit('No direct access script allowed');
 }
 
-class Goods_sort extends CI_Controller {
+class Goods_sort extends MY_Controller {
 
 	function __construct() {
 		parent::__construct();

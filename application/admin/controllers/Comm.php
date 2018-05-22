@@ -2,7 +2,7 @@
 	exit('No direct access script allowed');
 }
 
-class Comm extends CI_Controller {
+class Comm extends MY_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('comm_model');

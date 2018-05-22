@@ -2,7 +2,7 @@
 	exit('No direct access script allowed');
 }
 
-class Business extends CI_Controller {
+class Business extends MY_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('business_model');

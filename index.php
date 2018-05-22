@@ -111,6 +111,8 @@ $system_path = 'system';
  * NO TRAILING SLASH!
  */
 
+$application_folder = 'application/api';
+
 //online
 if ($_SERVER['HTTP_HOST'] == 'admin.wangjl.work') {
 	$application_folder = 'application/admin';
@@ -121,6 +123,13 @@ if ($_SERVER['HTTP_HOST'] == 'admin.wangjl.work') {
 if ($_SERVER['HTTP_HOST'] == 'admin.ele.com') {
 	$application_folder = 'application/admin';
 } else if ($_SERVER['HTTP_HOST'] == 'api.ele.com') {
+	$application_folder = 'application/api';
+}
+
+//局域网
+if ($_SERVER['HTTP_HOST'] == '192.168.1.66:71') {
+	$application_folder = 'application/admin';
+} else if ($_SERVER['HTTP_HOST'] == '192.168.1.66:70') {
 	$application_folder = 'application/api';
 }
 

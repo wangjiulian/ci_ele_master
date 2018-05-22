@@ -41,13 +41,13 @@ class Order extends MY_Controller {
 	 *
 	 */
 	public function make_order() {
-		$user_id = $this->input->post('user_id', true);
-		$business_id = $this->input->post('business_id', true);
-		$goods_idstr = $this->input->post('goods_idstr', true);
-		$goods_numstr = $this->input->post('goods_numstr', true);
-		$goods_pricestr = $this->input->post('goods_pricestr', true);
-		$lift_fee = $this->input->post('lift_fee', true);
-		$total_price = $this->input->post('total_price', true);
+		$user_id = $this->get_m_post('user_id', true);
+		$business_id = $this->get_m_post('business_id', true);
+		$goods_idstr = $this->get_m_post('goods_idstr', true);
+		$goods_numstr = $this->get_m_post('goods_numstr', true);
+		$goods_pricestr = $this->get_m_post('goods_pricestr', true);
+		$lift_fee = $this->get_m_post('lift_fee', true);
+		$total_price = $this->get_m_post('total_price', true);
 
 		if (empty($user_id) || empty($business_id) || empty($goods_idstr) || empty($goods_numstr) || empty($goods_pricestr) || empty($lift_fee) || empty($total_price)) {
 			$this->apifunction->show_json_msg('error', '参数不足');
@@ -111,9 +111,9 @@ class Order extends MY_Controller {
  *
  */
 	public function order_info() {
-		$user_id = $this->input->post('user_id', true);
+		$user_id = $this->get_m_post('user_id', true);
 		$perpage = 10;
-		$offset = $this->input->post('page', true) ? ((int) $this->input->post('page', true) - 1) * $perpage : 0;
+		$offset = $this->get_m_post('page', true) ? ((int) $this->get_m_post('page', true) - 1) * $perpage : 0;
 		if (empty($user_id)) {
 			$this->apifunction->show_json_msg('error', '参数不足');
 			exit;

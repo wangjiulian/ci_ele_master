@@ -43,9 +43,9 @@ class User extends MY_Controller {
  *
  */
 	public function login() {
-		$mobile = addslashes(trim($this->input->post('mobile')));
-		$pwd = addslashes(trim($this->input->post('pwd')));
-		$verword = addslashes(trim($this->input->post('verword')));
+		$mobile = addslashes(trim($this->get_m_post('mobile')));
+		$pwd = addslashes(trim($this->get_m_post('pwd')));
+		$verword = addslashes(trim($this->get_m_post('verword')));
 		// First, delete old captchas
 		$expiration = time() - 7200; // Two hour limit
 		$this->db->where('captcha_time < ', $expiration)

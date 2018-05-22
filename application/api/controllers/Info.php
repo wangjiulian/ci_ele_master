@@ -9,24 +9,24 @@
  *
  */
 
-class Info extends MY_Controller {
+class info extends MY_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('info_model');
 	}
 
 	/**
-	 * @api {POST} http://api.wangjl.work/Info/menu_sort 获取主页菜单分类
+	 * @api {POST} http://api.wangjl.work/info/menu_sort 获取主页菜单分类
 	 * @apiName menu_sort
-	 * @apiGroup Info
+	 * @apiGroup info
 	 * @apiVersion 1.0.0
 	 * @apiDescription 获取主页菜单分类
 	 * @apiPermission anyone
-	 * @apiSampleRequest http://api.wangjl.work/Info/menu_sort
+	 * @apiSampleRequest http://api.wangjl.work/info/menu_sort
 	 *
 	 *
 	 * @apiParamExample {jsonp} Request Example
-	 *   POST /Info/menu_sort
+	 *   POST /info/menu_sort
 	 *   {
 	 *      "code": "success",
 	 *      "re_info": [
@@ -54,18 +54,18 @@ class Info extends MY_Controller {
 	}
 
 	/**
-	 * @api {POST} http://api.wangjl.work/Info/business 获取商家
+	 * @api {POST} http://api.wangjl.work/info/business 获取商家
 	 * @apiName business
-	 * @apiGroup Info
+	 * @apiGroup info
 	 * @apiVersion 1.0.0
 	 * @apiDescription 获取商家
 	 * @apiPermission anyone
-	 * @apiSampleRequest http://api.wangjl.work/Info/business
+	 * @apiSampleRequest http://api.wangjl.work/info/business
 	 *
 	 * @apiParam {string} sort_id （必填）菜单分类id
 	 *
 	 * @apiParamExample {jsonp} Request Example
-	 *   POST /Info/business
+	 *   POST /info/business
 	 *   {
 	 *      "code": "success",
 	 *      "re_info": [
@@ -87,8 +87,9 @@ class Info extends MY_Controller {
 	 */
 
 	public function business() {
-		$sort_id = (int) $this->input->post('sort_id');
-		$offset = $this->input->post('page') ? (int) $this->input->post('page') * 10 : 0;
+
+		$sort_id = (int) $this->get_m_post('sort_id');
+		$offset = $this->get_m_post('page') ? (int) $this->get_m_post('page') * 10 : 0;
 		if (empty($sort_id)) {
 			$this->apifunction->show_json_msg('error', '请求无效，请联系客服');exit;
 		}
@@ -98,18 +99,18 @@ class Info extends MY_Controller {
 	}
 
 	/**
-	 * @api {POST} http://api.wangjl.work/Info/goods 获取商品
+	 * @api {POST} http://api.wangjl.work/info/goods 获取商品
 	 * @apiName goods
-	 * @apiGroup Info
+	 * @apiGroup info
 	 * @apiVersion 1.0.0
 	 * @apiDescription 获取商品
 	 * @apiPermission anyone
-	 * @apiSampleRequest http://api.wangjl.work/Info/goods
+	 * @apiSampleRequest http://api.wangjl.work/info/goods
 	 *
 	 * @apiParam {string} business_id （必填）商家id
 	 *
 	 * @apiParamExample {jsonp} Request Example
-	 *   POST /Info/goods
+	 *   POST /info/goods
 	 *   {
 	 *      "code": "success",
 	 *      "re_info": [
@@ -137,7 +138,7 @@ class Info extends MY_Controller {
 	 *
 	 */
 	public function goods() {
-		$business_id = (int) $this->input->post('business_id');
+		$business_id = (int) $this->get_m_post('business_id');
 		if (empty($business_id)) {
 			$this->apifunction->show_json_msg('error', '请求无效，请联系客服');exit;
 		}
