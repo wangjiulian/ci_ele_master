@@ -11,7 +11,7 @@ class Goods extends MY_Controller {
 	}
 
 	public function index() {
-		$offset = $this->uri->segment('4') ? ($this->uri->segment('4') - 1) * PERPAGE : 0;
+		$offset = $this->uri->segment('5') ? ($this->uri->segment('5') - 1) * PERPAGE : 0;
 		$perpage = PERPAGE;
 		$key = $this->input->post('q');
 		if ($key) {
@@ -23,8 +23,8 @@ class Goods extends MY_Controller {
 		//分页
 		$res = $this->goods_model->get_goods_list($condition, $offset, $perpage);
 		$config['total_rows'] = $res['total'];
-		$config['uri_segment'] = 4;
-		$config['base_url'] = '/goods/index/99/';
+		$config['uri_segment'] = 5;
+		$config['base_url'] = '/base/goods/index/99/';
 		$this->pagination->initialize($config);
 		$page = $this->pagination->create_links();
 
@@ -34,7 +34,7 @@ class Goods extends MY_Controller {
 			'page' => $page);
 
 		$this->load->view('header', $page_title = array('page_title' => '商品列表'));
-		$this->load->view('goods_list', $data);
+		$this->load->view('base/goods_list', $data);
 		$this->load->view('footer');
 	}
 
@@ -54,7 +54,7 @@ class Goods extends MY_Controller {
 			$this->db->trans_start();
 			$this->dbcomfunctions->saveData('goods', $insertData);
 			$this->db->trans_complete();
-			redirect('/goods/index/99/1');exit;
+			redirect('/base/goods/index/99/1');exit;
 		}
 
 		$business = $this->comm_model->get_business_info();
@@ -63,13 +63,13 @@ class Goods extends MY_Controller {
 			'business' => $business,
 			'sort' => $sort);
 		$this->load->view('header', $page_title = array('page_title' => '新增商品'));
-		$this->load->view('goods_add', $data);
+		$this->load->view('base/goods_add', $data);
 		$this->load->view('footer');
 	}
 
 	//编辑商品
 	public function edit_info() {
-		$goodsid = $this->uri->segment('3');
+		$goodsid = $this->uri->segment('4');
 		$post = $this->input->post();
 		if ($post) {
 			$post = $this->commfunctions->arrayTrim($post);
@@ -88,7 +88,7 @@ class Goods extends MY_Controller {
 			$this->db->trans_start();
 			$this->dbcomfunctions->updateData('goods', $upData);
 			$this->db->trans_complete();
-			redirect('/goods/index/99/1');exit;
+			redirect('/base/goods/index/99/1');exit;
 		}
 		$target = $this->goods_model->get_goods_info($goodsid);
 		$business = $this->comm_model->get_business_info();
@@ -99,7 +99,7 @@ class Goods extends MY_Controller {
 			'sort' => $sort);
 
 		$this->load->view('header', $page_title = array('page_title' => '编辑商品'));
-		$this->load->view('goods_edit', $data);
+		$this->load->view('base/goods_edit', $data);
 		$this->load->view('footer');
 	}
 

@@ -35,7 +35,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- customize 自定义 css js -->
   <link rel="stylesheet" href="/<?=ADMINTMP?>/dist/css/customize.css">
   <script async="" src="/<?=ADMINTMP?>/plugins/myjs/customize.js"></script>
-  <link rel="shortcut icon" href="http://www.gooddr.com/gooddr/images/gooddr.ico"><!-- favicon.ico -->
+  <link rel="shortcut icon" href="/theme/elmlogo.jpeg"><!-- favicon.ico -->
 
 </head>
 
@@ -68,7 +68,7 @@ $param[1] = $this->uri->segment('1');
 $param[2] = $this->uri->segment('2');
 $param[3] = $this->uri->segment('3');
 // $adm_username = $this->session->userdata('adm_username');
-$adm_username = 'username';
+$adm_username = $this->session->userdata('adm_username');
 ?>
   <!-- Main Header -->
   <header class="main-header">
@@ -79,7 +79,7 @@ $adm_username = 'username';
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
       <!-- <span class="logo-lg"><b>Kyt</b></span> -->
-      <span class="logo-lg"><img style="width: 107px;height: 39px;" src="/<?=ADMINTMP?>/dist/img/logo.png"></span>
+      <!-- <span class="logo-lg"><img style="width: 107px;height: 39px;"  src="/theme/elmlogo.jpeg"></span> -->
     </a>
 
     <!-- Header Navbar -->
@@ -248,7 +248,7 @@ $adm_username = 'username';
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="" class="img-circle" alt="User Image">
+          <img src="<?=$fixImg[1]?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?=$adm_username?></p>
@@ -274,16 +274,16 @@ $adm_username = 'username';
 
       <li class="header">HEADER</li>
       <li class="<?php if ($param[1] == 'menu') {?> active <?php }?>">
-        <a href="/menu/index/99/1"><i class="fa fa-wikipedia-w"></i><span>菜单栏</span></a>
+        <a href="/base/menu/index/99/1"><i class="fa fa-wikipedia-w"></i><span>菜单栏</span></a>
       </li>
       <li class="<?php if ($param[1] == 'business') {?> active <?php }?>">
-        <a href="/business/index/99/1"><i class="fa fa-wikipedia-w"></i><span>商家</span></a>
+        <a href="/base/business/index/99/1"><i class="fa fa-wikipedia-w"></i><span>商家</span></a>
       </li>
        <li class="<?php if ($param[1] == 'goods_sort') {?> active <?php }?>">
-        <a href="/goods_sort/index/99/1"><i class="fa fa-wikipedia-w"></i><span>商品分类</span></a>
+        <a href="/base/goods_sort/index/99/1"><i class="fa fa-wikipedia-w"></i><span>商品分类</span></a>
       </li>
         <li class="<?php if ($param[1] == 'goods') {?> active <?php }?>"">
-        <a href="/goods/index/99/1"><i class="fa fa-wikipedia-w"></i><span>商品</span></a>
+        <a href="/base/goods/index/99/1"><i class="fa fa-wikipedia-w"></i><span>商品</span></a>
       </li>
 
       </ul>

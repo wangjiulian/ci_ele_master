@@ -2,19 +2,19 @@
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>商品列表<!-- <small>Optional description</small> --></h1>
+  <h1>商家列表<!-- <small>Optional description</small> --></h1>
   <ol class="breadcrumb"><li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li><li class="active">Here</li></ol>
 </section>
 <!-- Main content -->
 <?php
-$param[4] = $this->uri->segment('4') ?: '';
+$param[4] = $this->uri->segment('5') ?: '';
 
 ?>
 <section class="content">
 	<div class="row">
     <div class="col-xs-12">
     <div class="box">
-    <div class="box-header"><h3 class="box-title">商品列表</h3></div>
+    <div class="box-header"><h3 class="box-title">商家列表</h3></div>
     <div class="box-body">
     <!-- /.box-body -->
     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -32,7 +32,7 @@ $param[4] = $this->uri->segment('4') ?: '';
              </form>
          </div>
          <div class="col-sm-4">
-            <a href="/goods/add_info"><button style="width: 80px"  class="btn btn-block btn-primary">新增</button></a>
+            <a href="/base/business/add_info"><button style="width: 80px"  class="btn btn-block btn-primary">新增</button></a>
         </div>
     </div>
 
@@ -43,10 +43,9 @@ $param[4] = $this->uri->segment('4') ?: '';
         	<thead>
         		<tr>
                     <th  colspan="1" rowspan="1" class="align-mid-h">序号</th>
+        			<th  colspan="1" rowspan="1" class="align-mid-h">类别</th>
+        			<th  colspan="1" rowspan="1" class="align-mid-h">名称</th>
         			<th  colspan="1" rowspan="1" class="align-mid-h">图片</th>
-        		    <th  colspan="1" rowspan="1" class="align-mid-h">名称</th>
-        			<th  colspan="1" rowspan="1" class="align-mid-h">商家</th>
-        			<th  colspan="1" rowspan="1" class="align-mid-h">商品分类</th>
         			<th  colspan="1" rowspan="1" class="align-mid-h">操作</th>
         		</tr>
         	</thead>
@@ -54,16 +53,16 @@ $param[4] = $this->uri->segment('4') ?: '';
         		<?php $i = $param[4] == '' ? 0 : ($param[4] - 1) * PERPAGE;foreach ($list as $lv) {$i++?>
         		<tr>
         			<th colspan="1" rowspan="1" class="align-mid-h"><?=$i?></th>
-       			    <th  class="left_thumb_imgharry"><img src="<?=$lv['img']?>"></th>
-       				<th colspan="1" rowspan="1" class="align-mid-h"><?=$lv['name']?></th>
-                    <th colspan="1" rowspan="1" class="align-mid-h"><?=$lv['business_name']?></th>
-        			<th colspan="1" rowspan="1" class="align-mid-h"><?=$lv['sort_name']?></th>
-        		    <th><a href="/goods/edit_info/<?=$lv['id']?>"><button class="btn btn-success btn-sm">编辑</button></a></th>
+                    <th colspan="1" rowspan="1" class="align-mid-h"><?=$sort[$lv['sort_id']]?></th>
+        			<th colspan="1" rowspan="1" class="align-mid-h"><?=$lv['name']?></th>
+        			<th  class="left_thumb_imgharry"><img src="<?=$lv['img_cover']?>"  ></th>
+        		    <th><a href="/base/business/edit_info/<?=$lv['id']?>"><button class="btn btn-success btn-sm">编辑</button></a></th>
         		 </tr>
 
         	<?php	}?>
         	</tbody>
 		</table>
+
   	</div>
     </div>
 
@@ -82,7 +81,7 @@ $param[4] = $this->uri->segment('4') ?: '';
 <!-- REQUIRED SCRIPT -->
 <script type="text/javascript">
    window.onload = function(){
-   	 $('.align-mid-h').css('vertical-align','middle');
+     $('.align-mid-h').css('vertical-align','middle');
    }
 
 

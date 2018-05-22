@@ -10,7 +10,7 @@ class Business extends MY_Controller {
 	}
 
 	public function index() {
-		$offset = $this->uri->segment('4') ? ($this->uri->segment('4') - 1) * PERPAGE : 0;
+		$offset = $this->uri->segment('5') ? ($this->uri->segment('5') - 1) * PERPAGE : 0;
 		$perpage = PERPAGE;
 		$key = $this->input->post('q');
 		if ($key) {
@@ -23,8 +23,8 @@ class Business extends MY_Controller {
 		//分页
 		$res = $this->business_model->get_business_list($condition, $offset, $perpage);
 		$config['total_rows'] = $res['total'];
-		$config['uri_segment'] = 4;
-		$config['base_url'] = '/business/index/99/';
+		$config['uri_segment'] = 5;
+		$config['base_url'] = '/base/business/index/99/';
 		$this->pagination->initialize($config);
 		$page = $this->pagination->create_links();
 
@@ -34,7 +34,7 @@ class Business extends MY_Controller {
 			'key' => $key,
 			'page' => $page);
 		$this->load->view('header', $page_title = array('page_title' => '商家列表'));
-		$this->load->view('business_list', $data);
+		$this->load->view('base/business_list', $data);
 		$this->load->view('footer');
 	}
 
@@ -50,7 +50,7 @@ class Business extends MY_Controller {
 			$this->db->trans_start();
 			$this->dbcomfunctions->saveData('business', $insertData);
 			$this->db->trans_complete();
-			redirect('/business/index/99/1');exit;
+			redirect('/base/business/index/99/1');exit;
 		}
 
 		$data = array('sort' => $this->comm_model->get_menu_info());
@@ -61,7 +61,7 @@ class Business extends MY_Controller {
 	}
 
 	public function edit_info() {
-		$businessid = $this->uri->segment('3');
+		$businessid = $this->uri->segment('4');
 		$post = $this->input->post();
 		if ($post) {
 			$post = $this->commfunctions->arrayTrim($post);
@@ -76,14 +76,14 @@ class Business extends MY_Controller {
 			$this->db->trans_start();
 			$this->dbcomfunctions->updateData('business', $upData);
 			$this->db->trans_complete();
-			redirect('/business/index/99/1');exit;
+			redirect('/base/business/index/99/1');exit;
 		}
 		$target = $this->business_model->get_business_info($businessid);
 		$data = array(
 			'target' => $target,
 			'sort' => $this->comm_model->get_menu_info());
 		$this->load->view('header', $page_title = array('page_title' => '编辑商家'));
-		$this->load->view('business_edit', $data);
+		$this->load->view('base/business_edit', $data);
 		$this->load->view('footer');
 	}
 

@@ -10,7 +10,7 @@ class Menu extends MY_Controller {
 	}
 
 	public function index() {
-		$offset = $this->uri->segment('4') ? ($this->uri->segment('4') - 1) * PERPAGE : 0;
+		$offset = $this->uri->segment('5') ? ($this->uri->segment('5') - 1) * PERPAGE : 0;
 		$perpage = PERPAGE;
 		$key = $this->input->post('q');
 		if ($key) {
@@ -23,8 +23,8 @@ class Menu extends MY_Controller {
 		//分页
 		$res = $this->menu_model->get_menu_list($condition, $offset, $perpage);
 		$config['total_rows'] = $res['total'];
-		$config['uri_segment'] = 4;
-		$config['base_url'] = '/menu/index/99/';
+		$config['uri_segment'] = 5;
+		$config['base_url'] = '/base/menu/index/99/';
 		$this->pagination->initialize($config);
 		$page = $this->pagination->create_links();
 
@@ -33,7 +33,7 @@ class Menu extends MY_Controller {
 			'key' => $key,
 			'page' => $page);
 		$this->load->view('header', $page_title = array('page_title' => '菜单栏'));
-		$this->load->view('menu_list', $data);
+		$this->load->view('base/menu_list', $data);
 		$this->load->view('footer');
 	}
 
@@ -49,17 +49,17 @@ class Menu extends MY_Controller {
 			$this->db->trans_start();
 			$this->dbcomfunctions->saveData('business_sort', $insertData);
 			$this->db->trans_complete();
-			redirect('/menu/index/99/1');exit;
+			redirect('/base/menu/index/99/1');exit;
 		}
 
 		$this->load->view('header', $page_title = array('page_title' => '新增Menu'));
-		$this->load->view('menu_add');
+		$this->load->view('base/menu_add');
 		$this->load->view('footer');
 
 	}
 
 	public function edit_info() {
-		$menuid = $this->uri->segment('3');
+		$menuid = $this->uri->segment('4');
 		$post = $this->input->post();
 		if ($post) {
 			$post = $this->commfunctions->arrayTrim($post);
@@ -73,12 +73,12 @@ class Menu extends MY_Controller {
 			$this->db->trans_start();
 			$this->dbcomfunctions->updateData('business_sort', $upData);
 			$this->db->trans_complete();
-			redirect('/menu/index/99/1');exit;
+			redirect('/base/menu/index/99/1');exit;
 		}
 		$target = $this->menu_model->get_menu_info($menuid);
 		$data = array('target' => $target);
 		$this->load->view('header', $page_title = array('page_title' => '编辑menu'));
-		$this->load->view('menu_edit', $data);
+		$this->load->view('base/menu_edit', $data);
 		$this->load->view('footer');
 	}
 

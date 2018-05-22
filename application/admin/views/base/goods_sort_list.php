@@ -7,7 +7,7 @@
 </section>
 <!-- Main content -->
 <?php
-$param[4] = $this->uri->segment('4') ?: '';
+$param[4] = $this->uri->segment('5') ?: '';
 
 ?>
 <section class="content">
@@ -32,7 +32,7 @@ $param[4] = $this->uri->segment('4') ?: '';
              </form>
          </div>
          <div class="col-sm-4">
-            <a href="/goods_sort/add_info"><button style="width: 80px"  class="btn btn-block btn-primary">新增</button></a>
+            <a href="/base/goods_sort/add_info"><button style="width: 80px"  class="btn btn-block btn-primary">新增</button></a>
         </div>
     </div>
 
@@ -54,7 +54,7 @@ $param[4] = $this->uri->segment('4') ?: '';
         			<th colspan="1" rowspan="1" class="align-mid-h"><?=$i?></th>
                     <th colspan="1" rowspan="1" class="align-mid-h"><?=$lv['business_name']?></th>
         			<th colspan="1" rowspan="1" class="align-mid-h"><?=$lv['name']?></th>
-        		    <th><a href="/goods_sort/edit_info/<?=$lv['id']?>"><button class="btn btn-success btn-sm">编辑</button></a></th>
+        		    <th><a href="/base/goods_sort/edit_info/<?=$lv['id']?>"><button class="btn btn-success btn-sm">编辑</button></a></th>
         		 </tr>
 
         	<?php	}?>

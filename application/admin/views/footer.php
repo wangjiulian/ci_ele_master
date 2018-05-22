@@ -5,7 +5,7 @@
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018 <a href="#">小程序</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2018 <a href="#">ele</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

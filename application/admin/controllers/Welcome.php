@@ -19,10 +19,8 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index() {
-
 		$adm_uid = $this->session->userdata('adm_uid') ?: 0;
 		if ($adm_uid) {
-
 			$this->load->view('header');
 			$this->load->view('welcome_message');
 			$this->load->view('footer');
@@ -54,10 +52,13 @@ class Welcome extends CI_Controller {
 			} else {
 				echo "119";exit;
 			}
-
 		}
-
 		$this->load->view('login');
+	}
+
+	function logout() {
+		session_destroy();
+		redirect(HOSTDOMAIN . '/welcome/login');
 
 	}
 }

@@ -11,7 +11,7 @@ class Goods_sort extends MY_Controller {
 	}
 
 	public function index() {
-		$offset = $this->uri->segment('4') ? ($this->uri->segment('4') - 1) * PERPAGE : 0;
+		$offset = $this->uri->segment('5') ? ($this->uri->segment('5') - 1) * PERPAGE : 0;
 		$perpage = PERPAGE;
 		$key = $this->input->post('q');
 		if ($key) {
@@ -24,8 +24,8 @@ class Goods_sort extends MY_Controller {
 		//分页
 		$res = $this->goods_sort_model->get_goods_sort_list($condition, $offset, $perpage);
 		$config['total_rows'] = $res['total'];
-		$config['uri_segment'] = 4;
-		$config['base_url'] = '/goods_sort/index/99/';
+		$config['uri_segment'] = 5;
+		$config['base_url'] = '/base/goods_sort/index/99/';
 		$this->pagination->initialize($config);
 		$page = $this->pagination->create_links();
 
@@ -35,7 +35,7 @@ class Goods_sort extends MY_Controller {
 			'page' => $page);
 
 		$this->load->view('header', $page_title = array('page_title' => '商品分类'));
-		$this->load->view('goods_sort_list', $data);
+		$this->load->view('base/goods_sort_list', $data);
 		$this->load->view('footer');
 	}
 
@@ -51,18 +51,18 @@ class Goods_sort extends MY_Controller {
 			$this->db->trans_start();
 			$this->dbcomfunctions->saveData('goods_sort', $insertData);
 			$this->db->trans_complete();
-			redirect('/goods_sort/index/99/1');exit;
+			redirect('/base/goods_sort/index/99/1');exit;
 		}
 
 		$data = array(
 			'business' => $this->comm_model->get_business_info());
 		$this->load->view('header', $page_title = array('page_title' => '新增商品分类'));
-		$this->load->view('goods_sort_add', $data);
+		$this->load->view('base/goods_sort_add', $data);
 		$this->load->view('footer');
 	}
 
 	public function edit_info() {
-		$sortid = $this->uri->segment('3');
+		$sortid = $this->uri->segment('4');
 		$post = $this->input->post();
 		if ($post) {
 			$post = $this->commfunctions->arrayTrim($post);
@@ -77,14 +77,14 @@ class Goods_sort extends MY_Controller {
 			$this->db->trans_start();
 			$this->dbcomfunctions->updateData('goods_sort', $upData);
 			$this->db->trans_complete();
-			redirect('/goods_sort/index/99/1');exit;
+			redirect('/base/goods_sort/index/99/1');exit;
 		}
 		$target = $this->goods_sort_model->get_goods_sort_info($sortid);
 		$data = array(
 			'target' => $target,
 			'business' => $this->comm_model->get_business_info());
 		$this->load->view('header', $page_title = array('page_title' => '编辑分类'));
-		$this->load->view('goods_sort_edit', $data);
+		$this->load->view('base/goods_sort_edit', $data);
 		$this->load->view('footer');
 	}
 
