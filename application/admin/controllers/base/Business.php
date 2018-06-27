@@ -7,6 +7,8 @@ class Business extends MY_Controller {
 		parent::__construct();
 		$this->load->model('business_model');
 		$this->load->model('comm_model');
+		error_reporting(-1);
+		ini_set('display_errors', 1);
 	}
 
 	public function index() {
@@ -45,7 +47,7 @@ class Business extends MY_Controller {
 			$post = $this->commfunctions->arrayTrim($post);
 			$insertData = array(
 				'name' => $post['iftitle'],
-				'img_cover' => $post['ifimgurl'],
+				'img_cover' => $post['tpimg'],
 				'sort_id' => $post['sort_type']);
 			$this->db->trans_start();
 			$this->dbcomfunctions->saveData('business', $insertData);
@@ -56,7 +58,7 @@ class Business extends MY_Controller {
 		$data = array('sort' => $this->comm_model->get_menu_info());
 
 		$this->load->view('header', $page_title = array('page_title' => '新增商家'));
-		$this->load->view('business_add', $data);
+		$this->load->view('base/business_add', $data);
 		$this->load->view('footer');
 	}
 
@@ -68,7 +70,7 @@ class Business extends MY_Controller {
 			$upData = array(
 				'set' => array(
 					'name' => $post['iftitle'],
-					'img_cover' => $post['ifimgurl'],
+					'img_cover' => $post['tpimg'],
 					'sort_id' => $post['sort_type']),
 				'where' => array(
 					'id' => $businessid),

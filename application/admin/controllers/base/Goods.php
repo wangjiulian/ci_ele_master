@@ -48,7 +48,7 @@ class Goods extends MY_Controller {
 				'business_id' => $post['business_id'],
 				'goods_sort_id' => $sort[0],
 				'name' => $post['iftitle'],
-				'img' => $post['ifimg'],
+				'img' => $post['tpimg'],
 				'price' => $post['ifprice'],
 				'introduce' => $post['ifintroduce']);
 			$this->db->trans_start();
@@ -79,7 +79,7 @@ class Goods extends MY_Controller {
 					'business_id' => $post['business_id'],
 					'goods_sort_id' => $sort[0],
 					'name' => $post['iftitle'],
-					'img' => $post['ifimg'],
+					'img' => $post['tpimg'],
 					'price' => $post['ifprice'],
 					'introduce' => $post['ifintroduce']),
 				'where' => array(

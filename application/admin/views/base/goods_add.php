@@ -43,7 +43,8 @@
 				 	</div>
 				 	<div class="form-group">
 				 		<label><span style="color: red">* </span>图片</label><br>
-				 		<input type="" class="form-control" name="ifimg" id="ifimg" placeholder="请输入商品图片">
+				 		  <input id="file-4" name="nbfile" class="file" accept="image/*" type="file" multiple data-preview-file-type="any" data-upload-url="/welcome/do_up_img">
+                         <div style="display: none;" id="imgsup"></div>
 				 	</div>
 				 	<div class="form-group">
 				 		<label><span style="color: red">* </span>简介</label><br>
@@ -63,9 +64,28 @@
 	</div>
 </section>
 <!-- /.content -->
+<!-- fileinput -->
+<script src="/<?=ADMINTMP?>/fileinput/js/plugins/sortable.js" type="text/javascript"></script>
+<script src="/<?=ADMINTMP?>/fileinput/js/fileinput.js" type="text/javascript"></script>
+<script src="/<?=ADMINTMP?>/fileinput/themes/explorer/theme.js" type="text/javascript"></script>
 
 <!-- REQUIRED SCRIPT -->
 <script type="text/javascript">
+
+  // 上传前
+    $("#file-4").fileinput({
+        maxFileCount: 3,
+        previewFileType: 'any',
+        uploadExtraData: {eleId: "<?=HASHVERIFY?>",path:'menu'}
+    });
+
+    // 上传成功后返回json
+    $('#file-4').on('fileuploaded', function(event, data, previewId, index) {
+        var form = data.form, files = data.files, extra = data.extra,
+            response = data.response, reader = data.reader;
+        $("#imgsup").append('<input type="" class="tpimg" name="tpimg" value="'+response.path+'">');
+        // console.log(response);return false;
+    });
 
      $('#business_id').change(function(){
      	var val = $(this).val()
@@ -91,10 +111,7 @@
 	 	alert('请输入商品价格')
 	 	return false;
 	 }
-	 if ($('#ifimg').val() == '') {
-	 	alert('请输入商品图片')
-	 	return false;
-	 }
+	  if (typeof($(".tpimg").val())=='undefined') {alert('请 Upload 图片');return false;}
 	  if ($('#ifintroduce').val() == '') {
 	 	alert('请输入商品简介')
 	 	return false;

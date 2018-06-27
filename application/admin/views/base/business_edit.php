@@ -23,10 +23,7 @@
                         <label><span style="color: red">* </span>名称</label><br>
                         <input type="" value="<?=$target['name']?>" class="form-control" name="iftitle" id="iftitle" placeholder="请输入商家名">
                     </div>
-                    <div class="form-group">
-                        <label><span style="color: red">* </span>图片地址</label><br>
-                        <input type="" value="<?=$target['img_cover']?>" class="form-control" name="ifimgurl" id="ifimgurl" placeholder="请输入商家背景图">
-                    </div>
+
                     <div class="form-group">
                         <label><span style="color: red">* </span>类别</label><br>
                         <?php $i = 0;foreach ($sort as $key => $value) {$i++;?>
@@ -34,6 +31,11 @@
                            <?php if ($i % 10 == 0) {?> <br><br> <?php }?>
                         <?php }?>
 
+                    </div>
+                      <div class="form-group">
+                        <label><span style="color: red">* </span>图片地址</label><br>
+                        <input id="file-4" name="nbfile" class="file" accept="image/*" type="file" multiple data-preview-file-type="any" data-upload-url="/welcome/do_up_img">
+                         <div style="display: none;" id="imgsup"></div>
                     </div>
 
                  </div>
@@ -50,18 +52,35 @@
     </div>
 </section>
 <!-- /.content -->
+<!-- fileinput -->
+<script src="/<?=ADMINTMP?>/fileinput/js/plugins/sortable.js" type="text/javascript"></script>
+<script src="/<?=ADMINTMP?>/fileinput/js/fileinput.js" type="text/javascript"></script>
+<script src="/<?=ADMINTMP?>/fileinput/themes/explorer/theme.js" type="text/javascript"></script>
 
 <!-- REQUIRED SCRIPT -->
 <script type="text/javascript">
+
+// 上传前
+    $("#file-4").fileinput({
+        maxFileCount: 3,
+        previewFileType: 'any',
+        uploadExtraData: {eleId: "<?=HASHVERIFY?>",path:'menu'}
+    });
+
+    // 上传成功后返回json
+    $('#file-4').on('fileuploaded', function(event, data, previewId, index) {
+        var form = data.form, files = data.files, extra = data.extra,
+            response = data.response, reader = data.reader;
+        $("#imgsup").append('<input type="" class="tpimg" name="tpimg" value="'+response.path+'">');
+        // console.log(response);return false;
+    });
+
     $('#onsubmit').click(function(){
       if($('#iftitle').val() == ''){
          alert('请输入名称')
         return false;
      }
-     if ($('#ifimgurl').val() == '') {
-        alert('请输入图片地址')
-        return false;
-     }
+   if (typeof($(".tpimg").val())=='undefined') {alert('请 Upload 图片');return false;}
     })
 
 

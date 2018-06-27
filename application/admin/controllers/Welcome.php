@@ -61,4 +61,21 @@ class Welcome extends CI_Controller {
 		redirect(HOSTDOMAIN . '/welcome/login');
 
 	}
+
+	function do_up_img() {
+		$hash = $this->input->post('eleId');
+		$subpath = $this->input->post('path');
+		if (!password_verify('ele', $hash)) {
+			echo "请稍后重试!";exit;
+		}
+		if ($_FILES) {
+			$pfile = '/uploads/' . $subpath . '/';
+			$filePath = $this->commfunctions->uploadFile('nbfile', $pfile);
+			echo json_encode(array('path' => $filePath[0]));exit;
+		} else {
+			echo "请选择文件！";exit;
+		}
+
+	}
+
 }

@@ -45,7 +45,7 @@ class Menu extends MY_Controller {
 
 			$insertData = array(
 				'name' => $post['iftitle'],
-				'img' => $post['ifimgurl']);
+				'img' => $post['tpimg']);
 			$this->db->trans_start();
 			$this->dbcomfunctions->saveData('business_sort', $insertData);
 			$this->db->trans_complete();
@@ -66,7 +66,7 @@ class Menu extends MY_Controller {
 			$upData = array(
 				'set' => array(
 					'name' => $post['iftitle'],
-					'img' => $post['ifimgurl']),
+					'img' => $post['tpimg']),
 				'where' => array(
 					'id' => $menuid),
 				'limit' => 1);

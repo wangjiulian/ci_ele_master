@@ -87,24 +87,31 @@ class Order extends MY_Controller {
  *   {
  *   "code": "success",
  *   "re_info": [
- *       {
- *           "id": "1",
- *           "user_id": "1",
- *           "business_id": "2",
- *
- *           "goods_idstr": "3",
- *          "goods_numstr": "4",
- *           "goods_pricestr": "5",
- *           "lift_fee": "6",
- *           "total_price": "7",
- *           "order_num": "6513dbe76cd0050b502218b3e9a80061",
- *           "pay_style": "1",
- *           "pay_type": "1",
- *           "nick_name": "",
- *           "mobile": "",
- *           "address": "",
- *           "order_number": "",
- *           "create_time": null
+ *        {
+ *           "id": "1",//订单id
+ *           "user_id": "1",//用户id
+ *           "business_id": "2",//商家id
+ *           "lift_fee": "6",//配送费
+ *           "total_price": "7",//总价
+ *           "order_num": "6513dbe76cd0050b502218b3e9a80061",//订单号
+ *           "pay_style": "1",//'1 在线支付'
+ *           "pay_type": "1",// '1 微信',
+ *           "nick_name": "",//昵称
+ *           "mobile": "",//手机号
+ *           "address": "",//地址
+ *           "create_time": "1526644808",//下单时间
+ *           "good": [
+ *               {
+ *                   "id": "1",//商品id
+ *                   "business_id": "2",//商家id
+ *                   "goods_sort_id": "5",//商品分类
+ *                   "name": "拌面",//商品名称
+ *                   "img": "http://img0.imgtn.bdimg.com/it/u=799415717,1915037875&fm=27&gp=0.jpg",//商品图片
+ *                   "price": "5",//商品价格
+ *                   "introduce": "拌面",//商品简介
+ *                   "num": "4"//购买商品数量
+ *              }
+ *           ]
  *       }
  *   ]
  *}

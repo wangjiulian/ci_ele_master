@@ -129,7 +129,7 @@ if ($_SERVER['HTTP_HOST'] == 'admin.ele.com') {
 //局域网
 if ($_SERVER['HTTP_HOST'] == '192.168.1.66:71') {
 	$application_folder = 'application/admin';
-} else if ($_SERVER['HTTP_HOST'] == '192.168.1.66:70') {
+} else if ($_SERVER['HTTP_HOST'] == '192.168.1.4:70') {
 	$application_folder = 'application/api';
 }
 

@@ -15,7 +15,13 @@ class Info_model extends CI_Model {
 	public function get_business_sort() {
 		$sql = " SELECT * FROM business_sort WHERE 1 ";
 		$list = $this->db->query($sql)->result_array();
-		return $list;
+		$taget = array();
+		foreach ($list as $lv) {
+			$lv['img'] = IMG_URL . $lv['img'];
+			$target[] = $lv;
+		}
+
+		return $target;
 	}
 
 	//获取商家
@@ -40,7 +46,7 @@ class Info_model extends CI_Model {
 				$goods_list[] = array(
 					'id' => $good['id'],
 					'name' => $good['name'],
-					'img' => $good['img'],
+					'img' => IMG_URL . $good['img'],
 					'price' => $good['price'],
 					'introdue' => $good['introduce']);
 			}
@@ -69,7 +75,13 @@ class Info_model extends CI_Model {
 			$sql .= " AND goods_sort_id = {$sort_id} ";
 		}
 		$list = $this->db->query($sql)->result_array();
-		return $list;
+		$target = array();
+		foreach ($list as $lv) {
+			$lv['img'] = IMG_URL . $lv['img'];
+			$target[] = $lv;
+		}
+
+		return $taget;
 
 	}
 

@@ -46,6 +46,18 @@ class User extends MY_Controller {
 		$mobile = addslashes(trim($this->get_m_post('mobile')));
 		$pwd = addslashes(trim($this->get_m_post('pwd')));
 		$verword = addslashes(trim($this->get_m_post('verword')));
+		if (empty($mobile)) {
+			$this->apifunction->show_json_msg('error', '请输入手机号');
+			exit;
+		}
+		if (empty($pwd)) {
+			$this->apifunction->show_json_msg('error', '请输入密码');
+			exit;
+		}
+		if (empty($verword)) {
+			$this->apifunction->show_json_msg('error', '请输入验证码');
+			exit;
+		}
 		// First, delete old captchas
 		$expiration = time() - 7200; // Two hour limit
 		$this->db->where('captcha_time < ', $expiration)
@@ -87,6 +99,6 @@ class User extends MY_Controller {
 			}
 
 		}
-
 	}
+
 }
